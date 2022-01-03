@@ -1,7 +1,8 @@
-package com.example.newsappmvvmexample
+package com.example.newsappmvvmexample.presenter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.newsappmvvmexample.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
