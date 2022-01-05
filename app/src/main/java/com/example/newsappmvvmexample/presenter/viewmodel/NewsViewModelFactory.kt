@@ -12,12 +12,13 @@ import com.example.newsappmvvmexample.domain.usecases.GetNewsHeadlinesUseCase
  */
 
 class NewsViewModelFactory (
-    private val app: Application,
+    private val app:Application,
     private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase
-    ): ViewModelProvider.Factory {
+):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return NewsViewModel(
-            app,getNewsHeadlinesUseCase
+            app,
+            getNewsHeadlinesUseCase
         ) as T
     }
 }

@@ -22,26 +22,26 @@ import java.lang.Exception
  * on 1/4/22.
  */
 
-class NewsViewModel (
-    private val app: Application,
-    private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase): AndroidViewModel(app) {
-    val newsHeadlines : MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+class NewsViewModel(
+    private val app:Application,
+    private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase
+) : AndroidViewModel(app) {
+    val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
-    fun getNewsHeadlines(country: String, page: Int) = viewModelScope.launch(Dispatchers.IO) {
-       try {
+    fun getNewsHeadLines(country: String, page: Int) = viewModelScope.launch(Dispatchers.IO) {
+        newsHeadLines.postValue(Resource.Loading())
+        try{
+            if(isNetworkAvailable(app)) {
 
-           newsHeadlines.postValue(Resource.Loading())
+                val apiResult = getNewsHeadlinesUseCase.execute(country, page)
+                newsHeadLines.postValue(apiResult)
+            }else{
+                newsHeadLines.postValue(Resource.Error("Internet is not available"))
+            }
 
-           if (isNetworkAvailable(app)) {
-               newsHeadlines.postValue(Resource.Loading())
-               val apiResult = getNewsHeadlinesUseCase.execute(country, page)
-               newsHeadlines.postValue(apiResult)
-           } else {
-               newsHeadlines.postValue(Resource.Error("Internet is not available"))
-           }
-       }catch (e: Exception) {
-           newsHeadlines.postValue(Resource.Error(e.message.toString()))
-       }
+        }catch (e:Exception){
+            newsHeadLines.postValue(Resource.Error(e.message.toString()))
+        }
 
     }
 
@@ -72,4 +72,5 @@ class NewsViewModel (
         return false
 
     }
+
 }

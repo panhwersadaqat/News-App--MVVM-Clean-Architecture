@@ -2,15 +2,26 @@ package com.example.newsappmvvmexample.presenter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.newsappmvvmexample.R
 import com.example.newsappmvvmexample.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.newsappmvvmexample.presenter.adapter.NewsAdapter
+import com.example.newsappmvvmexample.presenter.viewmodel.NewsViewModel
+import com.example.newsappmvvmexample.presenter.viewmodel.NewsViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var factory: NewsViewModelFactory
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
     private lateinit var binding: ActivityMainBinding
+    lateinit var viewModel: NewsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,5 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding.bnvNews.setupWithNavController(
             navController
         )
+        viewModel = ViewModelProvider(this,factory)
+            .get(NewsViewModel::class.java)
     }
 }

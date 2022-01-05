@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Created by Sadaqat Panhwer
@@ -16,11 +17,11 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
-
+    @Singleton
     @Provides
-    fun provideGetNewsHeadLinesUseCase(
+    fun provideGetNewsheadLinesUseCase(
         newsRepository: NewsRepository
-    ): GetNewsHeadlinesUseCase {
+    ):GetNewsHeadlinesUseCase{
         return GetNewsHeadlinesUseCase(newsRepository)
     }
 }

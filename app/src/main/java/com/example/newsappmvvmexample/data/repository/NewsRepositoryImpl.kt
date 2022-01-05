@@ -14,14 +14,14 @@ import retrofit2.Response
  * on 1/4/22.
  */
 
-class NewsRepositoryImpl (
+class NewsRepositoryImpl(
     private val newsRemoteDataSource: NewsRemoteDataSource
-        ): NewsRepository {
-    override suspend fun getNewsHeadlines(country: String, page: Int): Resource<APIResponse> {
-        return responseToResource(newsRemoteDataSource.getTopHeadlines(country, page))
+):NewsRepository {
+    override suspend fun getNewsHeadlines(country : String, page : Int): Resource<APIResponse> {
+        return responseToResource(newsRemoteDataSource.getTopHeadlines(country,page))
     }
 
-    private fun responseToResource(response: Response<APIResponse>): Resource<APIResponse>{
+    private fun responseToResource(response:Response<APIResponse>):Resource<APIResponse>{
         if(response.isSuccessful){
             response.body()?.let {result->
                 return Resource.Success(result)
@@ -29,6 +29,7 @@ class NewsRepositoryImpl (
         }
         return Resource.Error(response.message())
     }
+
 
     override suspend fun getSearchedNews(searchQuery: String): Resource<APIResponse> {
         TODO("Not yet implemented")
