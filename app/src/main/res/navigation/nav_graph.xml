@@ -11,7 +11,7 @@
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
         <action
-            android:id="@+id/action_newsFragment_to_infoFragment2"
+            android:id="@+id/action_newsFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
     </fragment>
     <fragment
@@ -27,5 +27,9 @@
         android:id="@+id/infoFragment"
         android:name="com.example.newsappmvvmexample.presenter.InfoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <argument
+            android:name="selected_article"
+            app:argType="com.example.newsappmvvmexample.data.model.Article" />
+    </fragment>
 </navigation>

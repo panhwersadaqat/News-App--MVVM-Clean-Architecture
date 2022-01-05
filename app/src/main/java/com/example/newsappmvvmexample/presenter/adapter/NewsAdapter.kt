@@ -16,7 +16,9 @@ import com.example.newsappmvvmexample.databinding.NewsListItemBinding
  * on 1/5/22.
  */
 
-class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
+class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+
+
     private val callback = object : DiffUtil.ItemCallback<Article>(){
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
@@ -29,8 +31,6 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
     }
 
     val differ = AsyncListDiffer(this,callback)
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = NewsListItemBinding
@@ -53,7 +53,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
         val binding:NewsListItemBinding):
         RecyclerView.ViewHolder(binding.root){
         fun bind(article: Article){
-            Log.i("MYTAG","came here ${article.title}")
+            Log.i("MYTAG","${article.title}")
             binding.tvTitle.text = article.title
             binding.tvDescription.text = article.description
             binding.tvPublishedAt.text = article.publishedAt
@@ -62,6 +62,20 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
             Glide.with(binding.ivArticleImage.context).
             load(article.urlToImage).
             into(binding.ivArticleImage)
+
+            binding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(article)
+                }
+            }
         }
     }
+
+    private var onItemClickListener :((Article)->Unit)?=null
+
+    fun setOnItemClickListener(listener : (Article)->Unit){
+        onItemClickListener = listener
+    }
+
+
 }
