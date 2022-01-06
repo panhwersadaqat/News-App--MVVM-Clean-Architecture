@@ -2,6 +2,7 @@ package com.example.newsappmvvmexample.presenter.di
 
 import com.example.newsappmvvmexample.domain.repository.NewsRepository
 import com.example.newsappmvvmexample.domain.usecases.GetNewsHeadlinesUseCase
+import com.example.newsappmvvmexample.domain.usecases.SaveNewsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +25,12 @@ class UseCaseModule {
     ):GetNewsHeadlinesUseCase{
         return GetNewsHeadlinesUseCase(newsRepository)
     }
+
+    @Singleton
+    @Provides
+     fun provideSaveNewsUseCase(
+        newsRepository: NewsRepository
+     ): SaveNewsUseCase {
+         return SaveNewsUseCase(newsRepository)
+     }
 }

@@ -2,6 +2,7 @@ package com.example.newsappmvvmexample.data.repository
 
 import com.example.newsappmvvmexample.data.model.APIResponse
 import com.example.newsappmvvmexample.data.model.Article
+import com.example.newsappmvvmexample.data.repository.dataSource.NewsLocalDataSource
 import com.example.newsappmvvmexample.data.repository.dataSource.NewsRemoteDataSource
 import com.example.newsappmvvmexample.data.util.Resource
 import com.example.newsappmvvmexample.domain.repository.NewsRepository
@@ -15,7 +16,8 @@ import retrofit2.Response
  */
 
 class NewsRepositoryImpl(
-    private val newsRemoteDataSource: NewsRemoteDataSource
+    private val newsRemoteDataSource: NewsRemoteDataSource,
+    private val newsLocalDataSource: NewsLocalDataSource
 ):NewsRepository {
     override suspend fun getNewsHeadlines(country : String, page : Int): Resource<APIResponse> {
         return responseToResource(newsRemoteDataSource.getTopHeadlines(country,page))
@@ -36,7 +38,7 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun saveNews(article: Article) {
-        TODO("Not yet implemented")
+        newsLocalDataSource.saveArticleToDB(article)
     }
 
     override suspend fun deleteNews(article: Article) {

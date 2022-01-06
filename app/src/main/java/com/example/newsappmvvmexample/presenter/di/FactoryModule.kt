@@ -2,6 +2,7 @@ package com.example.newsappmvvmexample.presenter.di
 
 import android.app.Application
 import com.example.newsappmvvmexample.domain.usecases.GetNewsHeadlinesUseCase
+import com.example.newsappmvvmexample.domain.usecases.SaveNewsUseCase
 import com.example.newsappmvvmexample.presenter.viewmodel.NewsViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -21,11 +22,13 @@ class FactoryModule {
     @Provides
     fun provideNewsViewModelFactory(
         application: Application,
-        getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase
+        getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
+        saveNewsUseCase: SaveNewsUseCase
     ):NewsViewModelFactory{
         return NewsViewModelFactory(
             application,
-            getNewsHeadlinesUseCase
+            getNewsHeadlinesUseCase,
+            saveNewsUseCase
         )
     }
 }
