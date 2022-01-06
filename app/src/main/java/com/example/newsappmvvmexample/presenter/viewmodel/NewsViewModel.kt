@@ -37,7 +37,6 @@ class NewsViewModel(
         newsHeadLines.postValue(Resource.Loading())
         try{
             if(isNetworkAvailable(app)) {
-
                 val apiResult = getNewsHeadlinesUseCase.execute(country, page)
                 newsHeadLines.postValue(apiResult)
             }else{

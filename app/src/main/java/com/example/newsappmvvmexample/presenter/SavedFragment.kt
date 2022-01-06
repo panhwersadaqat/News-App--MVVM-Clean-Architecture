@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvmexample.R
-import com.example.newsappmvvmexample.databinding.FragmentNewsBinding
 import com.example.newsappmvvmexample.databinding.FragmentSavedBinding
 import com.example.newsappmvvmexample.presenter.adapter.NewsAdapter
 import com.example.newsappmvvmexample.presenter.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class SavedFragment : Fragment() {
@@ -27,7 +25,6 @@ class SavedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_saved, container, false)
     }
 
@@ -74,15 +71,12 @@ class SavedFragment : Fragment() {
                         }
                         show()
                     }
-
             }
-
         }
 
         ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(fragmentSavedBinding.rvSaved)
         }
-
     }
 
 
