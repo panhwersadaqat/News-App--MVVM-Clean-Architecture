@@ -3,6 +3,7 @@ package com.example.newsappmvvmexample.data.repository.dataSourceImpl
 import com.example.newsappmvvmexample.data.db.ArticleDao
 import com.example.newsappmvvmexample.data.model.Article
 import com.example.newsappmvvmexample.data.repository.dataSource.NewsLocalDataSource
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Sadaqat Panhwer
@@ -15,5 +16,9 @@ class NewsLocalDataSourceImpl(
 ) : NewsLocalDataSource {
     override suspend fun saveArticleToDB(article: Article) {
         articleDao.insert(article)
+    }
+
+    override fun getSavedArticles(): Flow<List<Article>> {
+        return articleDao.getAllArticles()
     }
 }

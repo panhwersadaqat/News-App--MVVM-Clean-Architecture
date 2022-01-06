@@ -1,6 +1,7 @@
 package com.example.newsappmvvmexample.data.repository.dataSource
 
 import com.example.newsappmvvmexample.data.model.Article
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Sadaqat Panhwer
@@ -10,4 +11,5 @@ import com.example.newsappmvvmexample.data.model.Article
 
 interface NewsLocalDataSource {
     suspend fun saveArticleToDB(article: Article)
+    fun getSavedArticles(): Flow<List<Article>>
 }

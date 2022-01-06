@@ -41,7 +41,7 @@ class InfoFragment : Fragment() {
 
         fragmentInfoBinding.saveNewsButton.setOnClickListener {
             viewModel.saveArticle(article)
-            Snackbar.make(view,"Saved Successfully!",Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(view,"Saved Successfully!",Snackbar.LENGTH_SHORT).show()
         }
     }
 }
