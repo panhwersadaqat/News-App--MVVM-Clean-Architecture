@@ -1,6 +1,7 @@
 package com.example.newsappmvvmexample.presenter.di
 
 import android.app.Application
+import com.example.newsappmvvmexample.domain.usecases.DeleteSavedNewsUseCase
 import com.example.newsappmvvmexample.domain.usecases.GetNewsHeadlinesUseCase
 import com.example.newsappmvvmexample.domain.usecases.GetSavedNewsUseCase
 import com.example.newsappmvvmexample.domain.usecases.SaveNewsUseCase
@@ -25,13 +26,15 @@ class FactoryModule {
         application: Application,
         getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
         saveNewsUseCase: SaveNewsUseCase,
-        getSavedNewsUseCase: GetSavedNewsUseCase
+        getSavedNewsUseCase: GetSavedNewsUseCase,
+        deleteSavedNewsUseCase: DeleteSavedNewsUseCase
     ):NewsViewModelFactory{
         return NewsViewModelFactory(
             application,
             getNewsHeadlinesUseCase,
             saveNewsUseCase,
-            getSavedNewsUseCase
+            getSavedNewsUseCase,
+            deleteSavedNewsUseCase
         )
     }
 }
