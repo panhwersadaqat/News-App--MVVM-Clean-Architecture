@@ -6,6 +6,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.*
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.newsappmvvmexample.R
 import com.example.newsappmvvmexample.data.model.APIResponse
 import com.example.newsappmvvmexample.data.model.Article
 import com.example.newsappmvvmexample.data.util.Resource

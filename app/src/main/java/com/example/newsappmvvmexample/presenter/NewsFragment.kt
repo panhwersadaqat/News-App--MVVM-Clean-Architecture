@@ -63,7 +63,10 @@ class NewsFragment : Fragment() {
                 is Resource.Error->{
                     hideProgressBar()
                     response.message?.let {
-                        Toast.makeText(activity,"An error occurred : $it", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity,it, Toast.LENGTH_LONG).show()
+                        findNavController().navigate(
+                            R.id.action_newsFragment_to_savedFragment,
+                        )
                     }
                 }
 
